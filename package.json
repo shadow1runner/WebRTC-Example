@@ -1,0 +1,27 @@
+{
+  "name": "webrtc-example",
+  "version": "1.0.0",
+  "description": "WebRTC Example ==============",
+  "main": "server/server.js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "ws": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadow1runner/WebRTC-Example.git"
+  },
+  "keywords": [
+    "WebRTC"
+  ],
+  "author": "Shanet, Helmut Wolf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shadow1runner/WebRTC-Example/issues"
+  },
+  "homepage": "https://github.com/shadow1runner/WebRTC-Example#readme"
+}
