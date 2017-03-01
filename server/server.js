@@ -23,6 +23,9 @@ var handleRequest = function(request, response) {
     } else if(request.url == '/webrtc.js') {
         response.writeHead(200, {'Content-Type': 'application/javascript'});
         response.end(fs.readFileSync('client/webrtc.js'));
+    } else if(request.url == '/adapter.js') {
+        response.writeHead(200, {'Content-Type': 'application/javascript'});
+        response.end(fs.readFileSync('./node_modules/webrtc-adapter/out/adapter.js'));
     }
 };
 
