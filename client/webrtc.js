@@ -33,7 +33,7 @@ function pageReady() {
 
 function getUserMediaSuccess(stream) {
     localStream = stream;
-    localVideo.src = window.URL.createObjectURL(stream);
+    localVideo.srcObject = stream;
 }
 
 function start(isCaller) {
@@ -48,12 +48,16 @@ function start(isCaller) {
 }
 
 function gotMessageFromServer(message) {
-    if(!peerConnection) start(false);
+    if(!peerConnection) {
+        start(false);
+    }
 
     var signal = JSON.parse(message.data);
 
     // Ignore messages from ourself
-    if(signal.uuid == uuid) return;
+    if(signal.uuid == uuid)  {
+        return;
+    }
 
     if(signal.sdp) {
         peerConnection.setRemoteDescription(new RTCSessionDescription(signal.sdp)).then(function() {
@@ -74,20 +78,25 @@ function gotIceCandidate(event) {
 }
 
 function createdDescription(description) {
-    console.log('got description');
+    console.log('description created');
 
     peerConnection.setLocalDescription(description).then(function() {
-        serverConnection.send(JSON.stringify({'sdp': peerConnection.localDescription, 'uuid': uuid}));
+        var jsonDescription = JSON.stringify({
+            'sdp': peerConnection.localDescription,
+            'uuid': uuid
+        });
+        console.log('sending description');
+        serverConnection.send(jsonDescription);
     }).catch(errorHandler);
 }
 
 function gotRemoteStream(event) {
     console.log('got remote stream');
-    remoteVideo.src = window.URL.createObjectURL(event.stream);
+    remoteVideo.srcObject = event.stream;
 }
 
 function errorHandler(error) {
-    console.log(error);
+    console.error(error);
 }
 
 // Taken from http://stackoverflow.com/a/105074/515584
