@@ -39,12 +39,14 @@ wss.on('connection', function(ws) {
         // Broadcast any received message to all clients
         console.log('received: %s', message);
         wss.broadcast(message);
+        console.log('broadcasted');
     });
 });
 
 wss.broadcast = function(data) {
-    for(var i in this.clients) {
-        this.clients[i].send(data);
+    for(let ws of this.clients) {
+        console.log('broadcasting to client');
+        ws.send(data);
     }
 };
 
