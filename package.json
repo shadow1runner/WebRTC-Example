@@ -5,7 +5,8 @@
   "main": "server/server.js",
   "dependencies": {
     "fs": "^0.0.1-security",
-    "ws": "^2.2.0"
+    "ws": "^2.2.0",
+    "node-windows": "^0.1.14"
   },
   "devDependencies": {},
   "scripts": {
